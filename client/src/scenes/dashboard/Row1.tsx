@@ -17,10 +17,11 @@ type Props = {};
 const Row1 = (props: Props) => {
   const { palette } = useTheme();
   const { data } = useGetKpisQuery();
+  console.log(data);
   const revenueExpenses = useMemo(() => {
     return (
       data &&
-      data[0].monthlyData.map(({ month, revenue, expenses }) => {
+      data.map(({ month, revenue, expenses }) => {
         return {
           name: month.substring(0, 3),
           revenue: revenue,
@@ -33,12 +34,12 @@ const Row1 = (props: Props) => {
   return (
     <>
       <DashboardBox gridArea="a">
-        {/* <BoxHeader
+        <BoxHeader
           title="Revenue and Expenses"
           subtitle="top line represents revenue, bottom line represents expenses"
           sideText="+4%"
-        /> */}
-        <ResponsiveContainer width="100%" height="100%">
+        />
+        <ResponsiveContainer width="100%" height={220}>
           <AreaChart
             width={500}
             height={400}
